@@ -1,0 +1,106 @@
+{
+  "header": {
+    "searchPlaceholder": "Search menus, modules or functions... (Ctrl+K)",
+    "profile": "My Profile",
+    "settings": "Settings",
+    "logout": "Log Out"
+  },
+  "common": {
+    "language": "Language",
+    "english": "English",
+    "spanish": "Spanish",
+    "system": "System"
+  },
+  "settings": {
+    "title": "UI Configuration",
+    "navType": {
+      "title": "Navigation Type",
+      "sidebar": "Sidebar",
+      "topbar": "Header"
+    },
+    "sidebar": {
+      "title": "Sidebar Menu",
+      "theme": "Menu Theme",
+      "collapsed": "Collapsed"
+    },
+    "theme": {
+      "title": "App Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "Auto"
+    },
+    "direction": {
+      "title": "Direction"
+    },
+    "regional": {
+      "title": "Regional Settings"
+    }
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "simple": "Simple Page",
+    "examplesGroup": "Examples Group",
+    "nested": "Nested Page"
+  },
+  "pages": {
+    "simple": {
+      "title": "Simple Page",
+      "description": "This is an example page for a menu item without children."
+    },
+    "nested": {
+      "title": "Nested Page",
+      "description": "This is an example page for a menu item inside a submenu."
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "charts": {
+        "salesTrend": {
+          "title": "Sales Trend",
+          "series": "Sales",
+          "months": [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep"
+          ]
+        },
+        "userActivity": {
+          "title": "User Activity",
+          "days": [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat",
+            "Sun"
+          ],
+          "yAxis": "Activity (hours)",
+          "series": {
+            "activeUsers": "Active Users",
+            "newRegisters": "New Registers"
+          }
+        },
+        "categoryDistribution": {
+          "title": "Category Distribution",
+          "categories": [
+            "Electronics",
+            "Clothing",
+            "Home",
+            "Sports",
+            "Toys"
+          ]
+        },
+        "serverStatus": {
+          "title": "Server Status",
+          "label": "CPU Load"
+        }
+      }
+    }
+  }
+}

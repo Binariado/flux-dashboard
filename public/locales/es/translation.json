@@ -1,0 +1,106 @@
+{
+  "header": {
+    "searchPlaceholder": "Buscar en menús, módulos o funciones... (Ctrl+K)",
+    "profile": "Mi Perfil",
+    "settings": "Configuraciones",
+    "logout": "Cerrar Sesión"
+  },
+  "common": {
+    "language": "Idioma",
+    "english": "Inglés",
+    "spanish": "Español",
+    "system": "Sistema"
+  },
+  "settings": {
+    "title": "Configuración de UI",
+    "navType": {
+      "title": "Tipo de Navegación",
+      "sidebar": "Lateral",
+      "topbar": "Superior"
+    },
+    "sidebar": {
+      "title": "Menú Lateral",
+      "theme": "Tema del Menú",
+      "collapsed": "Colapsado"
+    },
+    "theme": {
+      "title": "Tema de Aplicación",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "system": "Auto"
+    },
+    "direction": {
+      "title": "Dirección"
+    },
+    "regional": {
+      "title": "Configuración Regional"
+    }
+  },
+  "menu": {
+    "dashboard": "Panel de Control",
+    "simple": "Página Simple",
+    "examplesGroup": "Grupo Ejemplos",
+    "nested": "Página Anidada"
+  },
+  "pages": {
+    "simple": {
+      "title": "Página Simple",
+      "description": "Esta es una página de ejemplo para un ítem de menú sin hijos."
+    },
+    "nested": {
+      "title": "Página Anidada",
+      "description": "Esta es una página de ejemplo para un ítem de menú que está dentro de un submenú."
+    },
+    "dashboard": {
+      "title": "Panel de Control",
+      "charts": {
+        "salesTrend": {
+          "title": "Tendencia de Ventas",
+          "series": "Ventas",
+          "months": [
+            "Ene",
+            "Feb",
+            "Mar",
+            "Abr",
+            "May",
+            "Jun",
+            "Jul",
+            "Ago",
+            "Sep"
+          ]
+        },
+        "userActivity": {
+          "title": "Actividad de Usuarios",
+          "days": [
+            "Lun",
+            "Mar",
+            "Mié",
+            "Jue",
+            "Vie",
+            "Sáb",
+            "Dom"
+          ],
+          "yAxis": "Actividad (horas)",
+          "series": {
+            "activeUsers": "Usuarios Activos",
+            "newRegisters": "Nuevos Registros"
+          }
+        },
+        "categoryDistribution": {
+          "title": "Distribución por Categoría",
+          "categories": [
+            "Electrónica",
+            "Ropa",
+            "Hogar",
+            "Deportes",
+            "Juguetes"
+          ]
+        },
+        "serverStatus": {
+          "title": "Estado del Servidor",
+          "label": "Carga CPU"
+        }
+      }
+    }
+  }
+}
