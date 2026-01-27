@@ -7,11 +7,7 @@ import { UserProfileMenu } from '@/components/layout/UserProfileMenu';
 import { useUIStore } from '@/stores/uiStore';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import {
-  Bell,
-  Search as SearchIcon,
-  SlidersHorizontal,
-} from 'lucide-react';
+import { Bell, Search as SearchIcon, SlidersHorizontal } from 'lucide-react';
 import ToggleSidebar from '@/components/layout/ToggleSidebar';
 
 const { Header: AntHeader } = Layout;
@@ -24,7 +20,7 @@ export function Header() {
 
   return (
     <>
-      <AntHeader className="flex items-center justify-between px-6[!important] bg-bg-secondary border-b border-border-secondary relative">
+      <AntHeader className="flex items-center justify-between px-6[!important] bg-bg-secondary border-b border-border-secondary sticky top-0 z-10">
         {/* Left section */}
         <div className="flex items-center gap-4 flex-1">
           {navType === 'sidebar' && (
@@ -50,7 +46,12 @@ export function Header() {
         {/* Right section */}
         <div className="flex items-center gap-4">
           {/* User Profile - Reusable Component */}
-          <UserProfileMenu collapsed={false} placement="bottomRight" showName={false} bgClassName="bg-white dark:bg-transparent" />
+          <UserProfileMenu
+            collapsed={false}
+            placement="bottomRight"
+            showName={false}
+            bgClassName="bg-white dark:bg-transparent"
+          />
 
           {/* Notifications */}
           <Badge count={5} size="small">
@@ -74,10 +75,7 @@ export function Header() {
                 className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
                 title={t('settings.title')}
               >
-                <SlidersHorizontal
-                  className="text-gray-700 dark:text-gray-300"
-                  size={20}
-                />
+                <SlidersHorizontal className="text-gray-700 dark:text-gray-300" size={20} />
               </button>
             </>
           )}
