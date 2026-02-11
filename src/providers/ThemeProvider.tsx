@@ -1,4 +1,5 @@
 import { App, ConfigProvider, theme as antTheme } from 'antd';
+import { themeConfig } from '@/config/theme';
 import { useEffect, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUIStore } from '@/stores/uiStore';
@@ -15,6 +16,8 @@ const languageMap: Record<string, Locale> = {
   es: esES,
   en: enUS,
 };
+
+const COLOR_PRIMARY = themeConfig.primary;
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const { theme, setActualTheme, actualTheme, direction, sidebarTheme } = useUIStore();
@@ -72,7 +75,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   const antdTheme = {
     algorithm: actualTheme === 'dark' ? antTheme.darkAlgorithm : antTheme.defaultAlgorithm,
     token: {
-      colorPrimary: '#04d182',
+      colorPrimary: COLOR_PRIMARY,
       colorSuccess: actualTheme === 'dark' ? '#34d399' : '#10b981',
       colorWarning: actualTheme === 'dark' ? '#fbbf24' : '#f59e0b',
       colorError: actualTheme === 'dark' ? '#f87171' : '#ef4444',
@@ -82,42 +85,61 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
       // Colores específicos para dark mode
       ...(actualTheme === 'dark' && {
-        colorBgBase: '#0f1419',
-        colorBgContainer: '#1a1f26',
-        colorBgElevated: '#22272e',
-        colorBorder: '#2d333b',
-        colorText: '#e6edf3',
-        colorTextSecondary: '#8b949e',
+        colorBgBase: themeConfig.dark.background,
+        colorBgContainer: themeConfig.dark.surface,
+        colorBgElevated: themeConfig.dark.surfaceElevated,
+        colorBorder: themeConfig.dark.border,
+        colorText: themeConfig.dark.text,
+        colorTextSecondary: themeConfig.dark.textSecondary,
       }),
     },
     components: {
       Layout: {
-        headerBg: actualTheme === 'dark' ? '#1a1f26' : '#ffffff',
-        siderBg: (sidebarTheme || actualTheme) === 'dark' ? '#0f1419' : '#ffffff',
-        bodyBg: actualTheme === 'dark' ? '#0f1419' : '#f8f9fa',
-        footerBg: actualTheme === 'dark' ? '#0f1419' : '#ffffff',
+        headerBg: actualTheme === 'dark' ? themeConfig.dark.surface : themeConfig.light.surface,
+        siderBg:
+          (sidebarTheme || actualTheme) === 'dark'
+            ? themeConfig.dark.background
+            : themeConfig.light.surface,
+        bodyBg: actualTheme === 'dark' ? themeConfig.dark.background : themeConfig.light.background,
+        footerBg:
+          actualTheme === 'dark' ? themeConfig.dark.background : themeConfig.light.background,
       },
       Menu: {
-        darkItemBg: '#0f1419',
-        darkItemSelectedBg: '#1a1f26',
-        itemSelectedBg: '#e6faf3',
-        itemSelectedColor: '#04d182',
+        darkItemBg: themeConfig.dark.background,
+        darkItemSelectedBg: themeConfig.dark.surface,
+
+        itemSelectedColor: COLOR_PRIMARY,
         // Hacer que el menú respete el tema del sidebar si está definido
-        colorBgContainer: (sidebarTheme || actualTheme) === 'dark' ? '#0f1419' : '#ffffff',
-        colorText: (sidebarTheme || actualTheme) === 'dark' ? '#e6edf3' : 'rgba(0, 0, 0, 0.88)',
-        itemHoverBg: (sidebarTheme || actualTheme) === 'dark' ? '#1a1f26' : 'rgba(0, 0, 0, 0.06)',
+        colorBgContainer:
+          (sidebarTheme || actualTheme) === 'dark'
+            ? themeConfig.dark.background
+            : themeConfig.light.surface,
+        colorText:
+          (sidebarTheme || actualTheme) === 'dark' ? themeConfig.dark.text : themeConfig.light.text,
+        itemHoverBg:
+          (sidebarTheme || actualTheme) === 'dark'
+            ? themeConfig.dark.actionHover
+            : themeConfig.light.actionHover,
       },
       Button: {
         primaryColor: '#ffffff',
         primaryShadow: 'none',
       },
       Card: {
-        colorBgContainer: actualTheme === 'dark' ? '#1a1f26' : '#ffffff',
-        colorBorderSecondary: actualTheme === 'dark' ? '#2d333b' : '#e5e7eb',
+        colorBgContainer:
+          actualTheme === 'dark' ? themeConfig.dark.surface : themeConfig.light.surface,
+        colorBorderSecondary:
+          actualTheme === 'dark' ? themeConfig.dark.border : themeConfig.light.border,
       },
       Table: {
-        headerBg: actualTheme === 'dark' ? '#22272e' : '#f8f9fa',
-        rowHoverBg: actualTheme === 'dark' ? '#22272e' : '#f8f9fa',
+        headerBg:
+          actualTheme === 'dark'
+            ? themeConfig.dark.surfaceElevated
+            : themeConfig.light.surfaceElevated,
+        rowHoverBg:
+          actualTheme === 'dark'
+            ? themeConfig.dark.surfaceElevated
+            : themeConfig.light.surfaceElevated,
       },
     },
   };

@@ -1,6 +1,6 @@
 # Flux Dashboard
 
-A modern, open-source Admin Dashboard template built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**.
+Admin Dashboard template built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![React](https://img.shields.io/badge/react-18+-61DAFB.svg?style=flat&logo=react&logoColor=black)
@@ -46,12 +46,14 @@ A modern, open-source Admin Dashboard template built with **React**, **TypeScrip
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/Binariado/flux-dashboard
    cd flux-dashboard
    ```
 
 2. Install dependencies:
+
    ```bash
    yarn install
    # or
@@ -59,6 +61,7 @@ A modern, open-source Admin Dashboard template built with **React**, **TypeScrip
    ```
 
 3. Start the development server:
+
    ```bash
    yarn dev
    # or
@@ -74,43 +77,80 @@ A modern, open-source Admin Dashboard template built with **React**, **TypeScrip
 
 This template follows a scalable and modular folder structure designed for growth.
 
-### 1. Theming System (`src/styles` & `src/providers`)
-The theming logic is centralized in **`src/providers/ThemeProvider.tsx`** and style definitions in **`src/styles/`**.
+### 1. Theming System (`src/config` & `src/styles`)
 
-*   **`ThemeProvider.tsx`**:
-    *   Acts as the bridge between **Tailwind CSS** (dark mode class strategy) and **Ant Design** (JavaScript tokens).
-    *   Automatically syncs the Ant Design ConfigProvider tokens (like `colorPrimary`, `colorBgContainer`) with the current theme state (`light`, `dark`, or `system`).
-    *   Listens to system preferences (`prefers-color-scheme`) for auto-switching.
+The theming logic is **centralized** to make customization easy and consistent across Ant Design and Tailwind CSS.
 
-*   **`src/styles/`**:
-    *   **`globals.css`**: Defines CSS variables (`:root`) for the color palette (`--bg-primary`, `--text-primary`, etc.). These are the source of truth for colors.
-    *   **`theme.css`**: Maps Tailwind utility classes (e.g., `bg-bg-secondary`) to the CSS variables defined in globals.
-    *   **`tailwind.css`**: Entry point for Tailwind imports.
+#### **Changing the Primary Color** (Brand Color)
+
+To change the main brand color (e.g., from Blue `#2563eb` to Purple `#7c3aed`):
+
+1.  **Edit `src/config/theme.ts`** (JS/TS Configuration):
+
+    ```typescript
+    export const themeConfig = {
+      primary: '#7c3aed', // Update this Hex code
+      // ...
+    };
+    ```
+
+    - This updates the primary color for **Ant Design components** (Buttons, Tables, Menus).
+
+2.  **Edit `src/styles/theme.css`** (CSS Variables):
+    ```css
+    :root {
+      /* ... */
+      /* USER CONFIGURATION START */
+      --primary: #7c3aed; /* Update this Hex code */
+      --primary-rgb: 124, 58, 237; /* Update RGB channels for opacity support */
+      /* ... */
+    }
+    ```
+
+    - This updates the primary color for **Tailwind/Shadcn components**.
+    - Hover and Active states are **automatically calculated** based on this color.
+
+#### **Dark Mode Customization**
+
+The dark mode uses a "Slate" palette (Blue-Gray tones) for better ergonomics. To customize it:
+
+- **Edit `src/config/theme.ts`**: Update the `dark` object.
+- **Edit `src/styles/theme.css`**: Update the `.dark` class variables to match.
+
+Both files must be kept in sync to ensure visual consistency between the different UI libraries used in the project.
+
+- **`src/styles/globals.css`**: Consumes variables from `theme.css`. **Do not edit colors here directly**; it is designed to strictly follow the configuration in `theme.css`.
 
 ### 2. Component Architecture (`src/components`)
+
 Components are organized by domain and reusability:
 
-*   **`layout/`**: Structural components for the application shell.
-    *   `Sidebar.tsx`: The main navigation menu. It includes a sticky footer for seamless access to settings and user profiles.
-    *   `Header.tsx`: The top navigation bar, which adapts its content based on the layout mode (Sidebar vs Topbar).
-    *   `DashboardLayout.tsx`: The main wrapper that orchestrates the Sidebar and Header.
-*   **`ui/`**: Generic, reusable UI atoms (buttons, cards, inputs) and wrappers for Ant Design components.
-*   **`dashboard/`**: Specific widgets and charts used in the dashboard views (e.g., ApexCharts integrations).
+- **`layout/`**: Structural components for the application shell.
+  - `Sidebar.tsx`: The main navigation menu. It includes a sticky footer for seamless access to settings and user profiles.
+  - `Header.tsx`: The top navigation bar, which adapts its content based on the layout mode (Sidebar vs Topbar).
+  - `DashboardLayout.tsx`: The main wrapper that orchestrates the Sidebar and Header.
+- **`ui/`**: Generic, reusable UI atoms (buttons, cards, inputs) and wrappers for Ant Design components.
+- **`dashboard/`**: Specific widgets and charts used in the dashboard views (e.g., ApexCharts integrations).
 
 ### 3. Routing (`src/routers`)
+
 Routing is handled via `react-router` and centralized in `src/routers/index.tsx`.
-*   **Protected Routes**: The `ProtectedRoute.tsx` wrapper ensures that only authenticated users can access dashboard pages, redirecting unauthenticated traffic to the login page.
+
+- **Protected Routes**: The `ProtectedRoute.tsx` wrapper ensures that only authenticated users can access dashboard pages, redirecting unauthenticated traffic to the login page.
 
 ### 4. State Management (`src/stores`)
+
 We use **Zustand** for lightweight and performant global state management:
-*   **`uiStore.ts`**: Handles UI-related state such as:
-    *   `theme` ('light' | 'dark' | 'system').
-    *   `sidebarCollapsed` (boolean).
-    *   `navType` (sidebar vs topbar preference).
-*   **`authStore.ts`**: Manages authentication state (user tokens, login/logout actions).
+
+- **`uiStore.ts`**: Handles UI-related state such as:
+  - `theme` ('light' | 'dark' | 'system').
+  - `sidebarCollapsed` (boolean).
+  - `navType` (sidebar vs topbar preference).
+- **`authStore.ts`**: Manages authentication state (user tokens, login/logout actions).
 
 ### 5. API Layer (`src/api`)
-*   **`axios.config.ts`**: A pre-configured Axios instance with interceptors for handling request headers (Authorization) and standardized error responses.
+
+- **`axios.config.ts`**: A pre-configured Axios instance with interceptors for handling request headers (Authorization) and standardized error responses.
 
 ## Customization Guide
 

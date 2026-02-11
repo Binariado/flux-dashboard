@@ -2,14 +2,61 @@
 
 :root {
   --font-size: 16px;
-  --background: #ffffff;
-  --foreground: oklch(0.145 0 0);
+
+  /* Backgrounds matching themeConfig.light.background */
+  --background: #f8f9fa;
+
+  /* themeConfig.light.text */
+  --foreground: #1f2937;
+
+  /* themeConfig.light.surface */
   --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #030213;
-  --primary-foreground: oklch(1 0 0);
+
+  /* themeConfig.light.text */
+  --card-foreground: #1f2937;
+
+  /* themeConfig.light.surfaceElevated */
+  --popover: #f8f9fa;
+
+  /* themeConfig.light.text */
+  --popover-foreground: #1f2937;
+
+  /* themeConfig.light.actionHover */
+  --action-hover: rgba(0, 0, 0, 0.06);
+
+  /* Mapped to global primary from globals.css */
+  /**
+   * =========================================
+   * USER CONFIGURATION START
+   * Define your main brand colors here. These will propagate to the entire app.
+   * =========================================
+   */
+
+  /* Primary Source of Truth for Color */
+  --primary: #2563eb;
+  /* Main brand color (Blue 600) */
+  --primary-rgb: 37, 99, 235;
+  /* RGB channels of the main color (for opacities) */
+  --primary-foreground: #ffffff;
+  /* Text color on top of primary button */
+
+  /* Gradient Variant */
+  --primary-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+
+  /* Calculated variants (Automatic) - You can override these if needed */
+  --primary-hover: color-mix(in srgb, var(--primary), black 10%);
+  --primary-active: color-mix(in srgb, var(--primary), black 20%);
+
+  /**
+   * =========================================
+   * USER CONFIGURATION END
+   * =========================================
+   */
+
+  /**
+   * System Variables
+   * These variables are used by the system and should not be modified directly unless necessary.
+   */
   --secondary: oklch(0.95 0.0058 264.53);
   --secondary-foreground: #030213;
   --muted: #ececf0;
@@ -18,15 +65,16 @@
   --accent-foreground: #030213;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.1);
+  --border: #e5e7eb;
+  /* themeConfig.light.border */
   --input: transparent;
   --input-background: #f3f3f5;
   --switch-background: #cbced4;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: oklch(0.708 0 0);
-  --gradient-to: #02a05c;
-  --link-hover: #03b96f;
+  --ring: var(--color-primary);
+  --gradient-to: var(--primary-active);
+  --link-hover: var(--primary-hover);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -44,27 +92,73 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  /* Backgrounds matching themeConfig.dark */
+  --background: #0f1419;
+  /* themeConfig.dark.background */
+  --foreground: #e6edf3;
+  /* themeConfig.dark.text */
+
+  --card: #1a1f26;
+  /* themeConfig.dark.surface */
+  --card-foreground: #e6edf3;
+
+  --popover: #1a1f26;
+  /* themeConfig.dark.surface */
+  --popover-foreground: #e6edf3;
+  /**
+   * =========================================
+   * USER CONFIGURATION START (DARK MODE)
+   * =========================================
+   */
+
+  /* Primary Source of Truth for Color (Dark) */
+  --primary: #2563eb;
+  /* Usually slightly lighter in dark mode, but keeping consistent for now */
+  --primary-rgb: 37, 99, 235;
+  --primary-foreground: #ffffff;
+
+  /* Gradient Variant */
+  --primary-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+
+  /* Calculated variants (Automatic) */
+  --primary-hover: color-mix(in srgb, var(--primary), black 10%);
+  --primary-active: color-mix(in srgb, var(--primary), black 20%);
+
+  /**
+   * =========================================
+   * USER CONFIGURATION END
+   * =========================================
+   */
+
+  /**
+   * System Variables (Dark Mode)
+   * These variables are used by the system and should not be modified directly unless necessary.
+   */
+  --secondary: #22272e;
+  /* themeConfig.dark.surfaceElevated */
+  --secondary-foreground: #e6edf3;
+
+  --muted: #22272e;
+  /* themeConfig.dark.surfaceElevated */
+  --muted-foreground: #8b949e;
+  /* themeConfig.dark.textSecondary */
+
+  --accent: #22272e;
+  /* themeConfig.dark.surfaceElevated */
+  --accent-foreground: #e6edf3;
+
+  /* themeConfig.dark.actionHover */
+  --action-hover: #1a1f26;
+
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --gradient-to: #02a05c;
-  --link-hover: #03b96f;
+  --border: #2d333b;
+  /* themeConfig.dark.border */
+  --input: #22272e;
+  /* themeConfig.dark.surfaceElevated */
+  --ring: var(--color-primary);
+  --gradient-to: var(--primary-active);
+  --link-hover: var(--primary-hover);
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --chart-1: oklch(0.488 0.243 264.376);
