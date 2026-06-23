@@ -15,6 +15,7 @@ Admin Dashboard template built with **React**, **TypeScript**, **Vite**, and **T
 - ⚡ **Lightning Fast Development**: Powered by Vite.
 - 🎨 **Modern UI/UX**: Built with Tailwind CSS and highly customized Ant Design components.
 - 🌗 **Dark/Light Mode**: Fully supported with a dedicated theme provider and smooth transitions.
+- 🖼️ **Multi-Template Layouts**: Switch between visual templates (floating-card / edge-to-edge) by changing one CSS import.
 - 📱 **Responsive Design**: Mobile-friendly sidebar and layout adaptations.
 - 🌐 **Internationalization (i18n)**: Built-in multi-language support (English/Spanish setup included).
 - 📊 **Data Visualization**: Integrated ApexCharts for beautiful, responsive charts.
@@ -97,6 +98,7 @@ To change the main brand color (e.g., from Blue `#2563eb` to Purple `#7c3aed`):
     - This updates the primary color for **Ant Design components** (Buttons, Tables, Menus).
 
 2.  **Edit `src/styles/theme.css`** (CSS Variables):
+
     ```css
     :root {
       /* ... */
@@ -121,7 +123,63 @@ Both files must be kept in sync to ensure visual consistency between the differe
 
 - **`src/styles/globals.css`**: Consumes variables from `theme.css`. **Do not edit colors here directly**; it is designed to strictly follow the configuration in `theme.css`.
 
-### 2. Component Architecture (`src/components`)
+### 2. Multi-Template System (`src/styles/themes`)
+
+Flux Dashboard supports **multiple visual templates** that can be switched by changing a single CSS import. Each template controls the layout styling (margins, borders, shadows, backgrounds) independently — components remain the same.
+
+#### Available Templates
+
+| Template            | Description                                                                               |
+| ------------------- | ----------------------------------------------------------------------------------------- |
+| **`edge-to-edge`**  | Default. Flat, full-width components with border separators. Clean and minimal.           |
+| **`floating-card`** | Rounded cards flotantes con sombras, márgenes, y backdrop blur. Estilo moderno y elevado. |
+
+#### Switching Templates
+
+Edit `src/styles/index.css` and change the active `@import`:
+
+```css
+/* Floating Card template */
+@import './themes/floating-card/template.css';
+/* @import './themes/edge-to-edge/template.css'; */
+
+/* Edge-to-Edge template */
+/* @import './themes/floating-card/template.css'; */
+@import './themes/edge-to-edge/template.css';
+```
+
+#### Template File Structure
+
+```
+src/styles/
+├── index.css                         ← Template switch (change 1 line)
+├── fonts.css / tailwind.css / theme.css
+├── globals.css                       ← Base styles shared by all templates
+└── themes/
+    ├── floating-card/
+    │   └── template.css              ← Floating card styles (~280 lines)
+    └── edge-to-edge/
+        └── template.css              ← Edge-to-edge styles
+```
+
+#### How It Works
+
+- **Components** use CSS classes like `template-header`, `template-sidebar`, `template-content`, `template-footer`, etc.
+- **Each `template.css`** defines or overrides styles for those classes.
+- The template CSS is imported **after** `globals.css`, so it naturally overrides base styles.
+- The `floating-card` template uses `!important` on properties that compete with Tailwind utility classes (margins, borders, shadows).
+- Template-specific positions (e.g., header toggle button) are also controlled per-template via classes like `template-header-toggle`.
+
+#### Creating a New Template
+
+1. Create a new directory under `src/styles/themes/`.
+2. Create a `template.css` file with your custom styles.
+3. Add the template classes to your components if they don't exist yet.
+4. Update `index.css` to import your new template.
+
+The component structure and logic remain untouched — only CSS changes.
+
+### 3. Component Architecture (`src/components`)
 
 Components are organized by domain and reusability:
 
@@ -132,13 +190,13 @@ Components are organized by domain and reusability:
 - **`ui/`**: Generic, reusable UI atoms (buttons, cards, inputs) and wrappers for Ant Design components.
 - **`dashboard/`**: Specific widgets and charts used in the dashboard views (e.g., ApexCharts integrations).
 
-### 3. Routing (`src/routers`)
+### 4. Routing (`src/routers`)
 
 Routing is handled via `react-router` and centralized in `src/routers/index.tsx`.
 
 - **Protected Routes**: The `ProtectedRoute.tsx` wrapper ensures that only authenticated users can access dashboard pages, redirecting unauthenticated traffic to the login page.
 
-### 4. State Management (`src/stores`)
+### 5. State Management (`src/stores`)
 
 We use **Zustand** for lightweight and performant global state management:
 
@@ -148,7 +206,7 @@ We use **Zustand** for lightweight and performant global state management:
   - `navType` (sidebar vs topbar preference).
 - **`authStore.ts`**: Manages authentication state (user tokens, login/logout actions).
 
-### 5. API Layer (`src/api`)
+### 6. API Layer (`src/api`)
 
 - **`axios.config.ts`**: A pre-configured Axios instance with interceptors for handling request headers (Authorization) and standardized error responses.
 

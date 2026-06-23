@@ -1,3 +1,13 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+@import './globals.css';
+
+/* ==============================================================================
+   Template Selection
+   Change the import below to switch between templates:
+   - floating-card: Rounded cards, shadows, margins, backdrop blur
+   - edge-to-edge:  Flat, full-width components with border separators (default)
+   ============================================================================== */
+@import './themes/floating-card/template.css';
+/* @import './themes/edge-to-edge/template.css'; */

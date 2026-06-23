@@ -17,10 +17,10 @@ export function MainLayout() {
       <Layout>
         <Header />
         {navType === 'topbar' && <TopBar />}
-        <Content className="m-6">
+        <Content className="m-6 template-content">
           <Outlet />
         </Content>
-        <Footer className="text-center bg-bg-secondary text-gray-500">
+        <Footer className="text-center bg-bg-secondary text-gray-500 template-footer">
           Flux Dashboard ©{new Date().getFullYear()} Created by Brayan Salgado
         </Footer>
       </Layout>

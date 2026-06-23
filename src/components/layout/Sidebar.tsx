@@ -4,9 +4,7 @@ import { useLocation } from 'react-router';
 import { useMenuItems } from '@/hooks/useMenuItems';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import {
-  SlidersHorizontal,
-} from 'lucide-react';
+import { SlidersHorizontal } from 'lucide-react';
 
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { LanguageSelector } from '@/components/layout/LanguageSelector';
@@ -51,12 +49,12 @@ export function Sidebar() {
         trigger={null}
         width={280}
         collapsedWidth={80}
-        className="border-r border-border-secondary relative"
+        className="border-r border-border-secondary relative template-sidebar"
         style={siderStyle}
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="h-16 flex shrink-0 items-center justify-center border-b border-border-secondary">
+          <div className="h-16 flex shrink-0 items-center justify-center border-b border-border-secondary template-sidebar-header overflow-hidden">
             {sidebarCollapsed ? (
               <div className="text-2xl font-bold text-primary">F</div>
             ) : (
@@ -65,7 +63,7 @@ export function Sidebar() {
           </div>
 
           {/* Menu - Scrollable Area */}
-          <div className="flex-1 overflow-y-auto custom-scrollbar">
+          <div className="flex-1 overflow-y-auto custom-scrollbar template-sidebar-menu">
             <Menu
               mode="inline"
               selectedKeys={getSelectedKeys()}
@@ -76,11 +74,14 @@ export function Sidebar() {
           </div>
 
           {/* Footer - Fixed at bottom */}
-          <div className="p-4 border-t border-border-secondary shrink-0 bg-bg-secondary">
-            <div className={`flex ${sidebarCollapsed ? 'flex-col gap-4 items-center' : 'flex-col gap-4'}`}>
-
+          <div className="p-4 border-t border-border-secondary shrink-0 bg-bg-secondary template-sidebar-footer">
+            <div
+              className={`flex ${sidebarCollapsed ? 'flex-col gap-4 items-center' : 'flex-col gap-4'}`}
+            >
               {/* Utility Row (Lang, Theme, Settings) */}
-              <div className={`flex items-center ${sidebarCollapsed ? 'flex-col gap-4' : 'justify-between'}`}>
+              <div
+                className={`flex items-center ${sidebarCollapsed ? 'flex-col gap-4' : 'justify-between'}`}
+              >
                 {/* Wrapping LanguageSelector in a way that fits if collapsed? LanguageSelector might be too wide. 
                     Let's assume LanguageSelector has an icon-only mode or we just hide text. 
                     Actually, LanguageSelector usually returns a dropdown. 
@@ -101,7 +102,11 @@ export function Sidebar() {
               </div>
 
               {/* User Profile */}
-              <UserProfileMenu collapsed={sidebarCollapsed} placement="topLeft" bgClassName="bg-white dark:bg-bg-primary" />
+              <UserProfileMenu
+                collapsed={sidebarCollapsed}
+                placement="topLeft"
+                bgClassName="bg-white dark:bg-bg-primary"
+              />
             </div>
           </div>
         </div>

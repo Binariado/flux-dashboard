@@ -20,11 +20,11 @@ export function Header() {
 
   return (
     <>
-      <AntHeader className="flex items-center justify-between px-6[!important] bg-bg-secondary border-b border-border-secondary sticky top-0 z-10">
+      <AntHeader className="flex items-center justify-between px-6[!important] bg-bg-secondary border-b border-border-secondary sticky top-0 z-10 template-header">
         {/* Left section */}
         <div className="flex items-center gap-4 flex-1">
           {navType === 'sidebar' && (
-            <div className="absolute top-4 start-[-17.5px] z-20">
+            <div className="absolute top-4 z-20 template-header-toggle">
               <ToggleSidebar shape="circle" filled size={16} />
             </div>
           )}

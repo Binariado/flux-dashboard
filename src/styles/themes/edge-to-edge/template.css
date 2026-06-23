@@ -1,0 +1,9 @@
+/* ==============================================================================
+   Template: Edge-to-Edge
+   Flat layout style with full-width components and border separators.
+   ============================================================================== */
+
+/* Header Toggle position: peeks out to the left, overlapping the sidebar */
+.template-header-toggle {
+  inset-inline-start: -17.5px;
+}

@@ -7,7 +7,7 @@ export function TopBar() {
   const location = useLocation();
 
   return (
-    <div className="bg-bg-secondary border-b border-border-secondary px-6">
+    <div className="bg-bg-secondary border-b border-border-secondary px-6 template-topbar">
       <Menu
         mode="horizontal"
         selectedKeys={[location.pathname]}
