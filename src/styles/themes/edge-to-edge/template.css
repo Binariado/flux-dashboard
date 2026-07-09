@@ -7,3 +7,26 @@
 .template-header-toggle {
   inset-inline-start: -17.5px;
 }
+
+/* ----------------------------------------------------------------------------
+   Navbar Unificado (Topbar Navigation)
+   Contenedor sticky que envuelve Header + TopBar.
+   Estilo edge-to-edge: flat, full-width, con border separators.
+   ---------------------------------------------------------------------------- */
+.template-navbar {
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.template-header-topbar {
+  padding-inline: 1.5rem;
+}
+
+.template-topbar-inner {
+  background: transparent;
+}
+
+.template-topbar-menu {
+  border-bottom: none;
+  padding: 0 1.5rem;
+}

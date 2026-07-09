@@ -15,8 +15,14 @@ export function MainLayout() {
     <Layout hasSider={navType === 'sidebar'}>
       {navType === 'sidebar' && <Sidebar />}
       <Layout>
-        <Header />
-        {navType === 'topbar' && <TopBar />}
+        {navType === 'topbar' ? (
+          <div className="sticky top-0 z-10 template-navbar">
+            <Header variant="topbar" />
+            <TopBar variant="topbar" />
+          </div>
+        ) : (
+          <Header variant="sidebar" />
+        )}
         <Content className="m-6 template-content">
           <Outlet />
         </Content>

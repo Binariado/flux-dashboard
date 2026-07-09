@@ -13,26 +13,34 @@ import ToggleSidebar from '@/components/layout/ToggleSidebar';
 const { Header: AntHeader } = Layout;
 const { Search } = Input;
 
-export function Header() {
+interface HeaderProps {
+  variant?: 'sidebar' | 'topbar';
+}
+
+export function Header({ variant = 'sidebar' }: HeaderProps) {
   const { navType } = useUIStore();
   const { t } = useTranslation();
   const [settingsOpen, setSettingsOpen] = useState(false);
 
+  const isTopbar = variant === 'topbar';
+
+  const headerClassName = isTopbar
+    ? 'flex items-center justify-between bg-bg-secondary template-header-topbar'
+    : 'flex items-center justify-between px-6[!important] bg-bg-secondary border-b border-border-secondary sticky top-0 z-10 template-header';
+
   return (
     <>
-      <AntHeader className="flex items-center justify-between px-6[!important] bg-bg-secondary border-b border-border-secondary sticky top-0 z-10 template-header">
+      <AntHeader className={headerClassName}>
         {/* Left section */}
         <div className="flex items-center gap-4 flex-1">
-          {navType === 'sidebar' && (
+          {!isTopbar && navType === 'sidebar' && (
             <div className="absolute top-4 z-20 template-header-toggle">
               <ToggleSidebar shape="circle" filled size={16} />
             </div>
           )}
 
           {/* Logo for Topbar */}
-          {navType === 'topbar' && (
-            <div className="text-xl font-bold text-primary mr-4">Flux Dashboard</div>
-          )}
+          {isTopbar && <div className="text-xl font-bold text-primary mr-4">Flux Dashboard</div>}
 
           {/* Search Bar */}
           <Search
@@ -61,7 +69,7 @@ export function Header() {
           </Badge>
 
           {/* Layout-specific items: Only show in Header if using Topbar navigation. */}
-          {navType === 'topbar' && (
+          {isTopbar && (
             <>
               {/* Language Selector */}
               <LanguageSelector />

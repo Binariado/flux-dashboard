@@ -279,3 +279,41 @@
 .template-layout-bg {
   background-color: transparent !important;
 }
+
+/* ----------------------------------------------------------------------------
+   Navbar Unificado (Topbar Navigation)
+   Contenedor sticky que envuelve Header + TopBar como una sola pieza.
+   Sin separador entre header y menú (seamless).
+   ---------------------------------------------------------------------------- */
+.template-navbar {
+  top: 1rem !important;
+  margin: 1rem 1rem 0 1rem !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 1rem !important;
+  box-shadow: var(--shadow-lg) !important;
+  backdrop-filter: blur(8px);
+  background-color: color-mix(in srgb, var(--bg-secondary) 85%, transparent) !important;
+}
+
+.template-header-topbar {
+  border-bottom: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  position: relative !important;
+  top: auto !important;
+  padding-inline: 1.5rem !important;
+}
+
+.template-topbar-inner {
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 0 1rem 1rem !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.template-topbar-menu {
+  padding: 0 1.5rem;
+  border-bottom: none;
+}
